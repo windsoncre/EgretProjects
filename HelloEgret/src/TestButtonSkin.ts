@@ -35,6 +35,8 @@ class TestButtonSkin extends eui.ItemRenderer{
         console.log("name:  "+ this.data.name);
         console.log("lphone:  "+ this.data.phone);
         console.log("lqq:  "+ this.data.qq);
+
+        //添加说明
         
     }
 
