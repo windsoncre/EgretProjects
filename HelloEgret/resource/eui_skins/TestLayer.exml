@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="TestLayer" width="640" height="500" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="bg_jpg" x="0" y="-272"/>
+	<e:List id="listView" width="640" height="500" x="0" y="0" itemRendererSkinName="skins.ButtonSkin">
+		<e:ArrayCollection>
+			<e:Array>
+				<e:Object x="null"/>
+				<e:Object x="null"/>
+			</e:Array>
+		</e:ArrayCollection>
+	</e:List>
+</e:Skin>
