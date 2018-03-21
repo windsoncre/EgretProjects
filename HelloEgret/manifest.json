@@ -16,8 +16,9 @@
 		"bin-debug/Girl.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
-		"bin-debug/MyTestLayer.js",
 		"bin-debug/TestButtonSkin.js",
+		"bin-debug/TestListView.js",
+		"bin-debug/TestMyLayer.js",
 		"bin-debug/ThemeAdapter.js"
 	]
 }

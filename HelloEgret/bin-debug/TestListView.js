@@ -18,28 +18,32 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var MyTestLayer = (function (_super) {
-    __extends(MyTestLayer, _super);
-    function MyTestLayer() {
+var TestListView = (function (_super) {
+    __extends(TestListView, _super);
+    function TestListView() {
         var _this = _super.call(this) || this;
         _this.dataSource = [];
-        _this.skinName = "resource/eui_skins/TestLayer.exml";
+        _this.skinName = "resource/eui_skins/TestListViewSkin.exml";
         _this.listView.itemRenderer = TestButtonSkin; //view类 
-        for (var i = 1; i < 50; i++) {
-            _this.dataSource.push({ name: "name" + i, phone: "a" + i, qq: "b" + i });
+        //模拟一个数据体
+        var nameList = new Array("Test1", "Test2", "Test3", "Test4", "Test5", "Test6", "Test7", "Test8", "Test9");
+        for (var i in nameList) {
+            _this.dataSource.push({ name: nameList[i], type: i });
         }
+        //创建数据体的适配器
         _this.listView.dataProvider = new eui.ArrayCollection(_this.dataSource);
+        //按钮
+        var button = new eui.Button();
+        button.label = "Back";
+        _this.addChild(button);
+        button.addEventListener(egret.TouchEvent.TOUCH_TAP, _this.onButtonClick, _this);
         return _this;
-        //this.Beginbtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.OnClick,this);
-        // this.Beginbtn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.OnClick_begin,this);
     }
-    MyTestLayer.prototype.OnClick_begin = function () {
-        console.log("OnClick");
-        // var sceneLevel = new SceneLevel();
-        // this.parent.addChild(sceneLevel);
-        // this.parent.removeChild(this);
+    TestListView.prototype.onButtonClick = function () {
+        //移除自己
+        this.parent.removeChild(this);
     };
-    return MyTestLayer;
+    return TestListView;
 }(eui.Component));
-__reflect(MyTestLayer.prototype, "MyTestLayer");
-//# sourceMappingURL=MyTestLayer.js.map
+__reflect(TestListView.prototype, "TestListView");
+//# sourceMappingURL=TestListView.js.map

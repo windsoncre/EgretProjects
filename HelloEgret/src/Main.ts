@@ -36,6 +36,8 @@ class Main extends eui.UILayer {
 
     private times:number; //
 
+    // private 
+
 
     private loadingView: LoadingUI;
     protected createChildren(): void {
@@ -148,9 +150,7 @@ class Main extends eui.UILayer {
      */
     protected startCreateScene(): void {
 
-        //添加皮肤
-        var testLayer:MyTestLayer = new MyTestLayer();       /**实例化皮肤对象 */  
-        this.addChild(testLayer);          /**将test显示对象添加到舞台 */  
+
 
 
 
@@ -166,10 +166,7 @@ class Main extends eui.UILayer {
         // iconR.y = 300;
         // this.addChild(iconR);
 
-        // let stageW = this.stage.stageWidth;
-        // let stageH = this.stage.stageHeight;
-        // sky.width = stageW;
-        // sky.height = stageH;
+
 
 
         // this.times = -1;
@@ -206,20 +203,13 @@ class Main extends eui.UILayer {
         // timer.start();
 
 
-                
 
-
-
-
-
-
-
-        // let sky = this.createBitmapByName("bg_jpg");
-        // this.addChild(sky);
-        // let stageW = this.stage.stageWidth;
-        // let stageH = this.stage.stageHeight;
-        // sky.width = stageW;
-        // sky.height = stageH;
+        let sky = this.createBitmapByName("bg_jpg");
+        this.addChild(sky);
+        let stageW = this.stage.stageWidth;
+        let stageH = this.stage.stageHeight;
+        sky.width = stageW;
+        sky.height = stageH;
 
         // let topMask = new egret.Shape();
         // topMask.graphics.beginFill(0x000000, 0.5);
@@ -268,14 +258,21 @@ class Main extends eui.UILayer {
         // // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         // RES.getResAsync("description_json", this.startAnimation, this);
 
-        // let button = new eui.Button();
-        // button.label = "Click!";
-        // button.horizontalCenter = 0;
-        // button.verticalCenter = 0;
-        // this.addChild(button);
-        // button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
 
-
+        var buttonList:Array<any> = [];
+        var nameList=new Array("TestLayer","Label","TestListView")
+        for(var i= 0;i<nameList.length;i++)
+        {
+            var button = new eui.Button();
+            button.label = nameList[i];
+            button.width = 150
+            button.horizontalCenter = 0;
+            // button.horizontalCenter = 0;
+            // button.verticalCenter = 0;
+            button.y = 0+i*70;
+            this.addChild(button);
+            button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        }
 
     }
 
@@ -394,10 +391,50 @@ class Main extends eui.UILayer {
      * Click the button
      */
     private onButtonClick(e: egret.TouchEvent) {
-        let panel = new eui.Panel();
-        panel.title = "Title";
-        panel.horizontalCenter = 0;
-        panel.verticalCenter = 0;
-        this.addChild(panel);
+        // let panel = new eui.Panel();
+        // panel.title = "Title";
+        // panel.horizontalCenter = 0;
+        // panel.verticalCenter = 0;
+        // this.addChild(panel);
+
+
+
+        if(e.target && e.target.label)
+        {
+            switch(e.target.label)
+            {
+                case "TestLayer" : this.createTestLayer(); break;//创建场景
+                case "TestLabel" : this.createTestLabel(); break;//创建listView
+                case "TestListView" : this.createTestListView(); break;//创建listView
+            }
+        }
+
+        console.log(e.target);
+        
+
+
     }
+
+
+    public createTestLayer()
+    {
+        var pTestImg:TestMyLayer = new TestMyLayer();       /**测试图片对象 */  
+        this.addChild(pTestImg);                    /**将test显示对象添加到舞台 */  
+    }
+
+
+    public createTestLabel()
+    {
+        // var pTestImg:TestImg = new TestImg();       /**测试图片对象 */  
+        // this.addChild(pTestImg);                    /**将test显示对象添加到舞台 */  
+    }
+
+    public createTestListView()
+    {
+        //listview
+        var testListView:TestListView = new TestListView();       /**实例化皮肤对象 */  
+        this.addChild(testListView);          /**将test显示对象添加到舞台 */  
+    }
+
+
 }

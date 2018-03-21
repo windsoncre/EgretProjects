@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ShowInfoBtn" width="200" height="50" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="bg" source="button_up_png" x="0" y="0" width="200" height="50" scale9Grid="1,3,8,8"/>
+	<e:Label id="info" text="info" horizontalCenter="0" verticalCenter="0" anchorOffsetX="0.5" anchorOffsetY="0.5"/>
+</e:Skin>

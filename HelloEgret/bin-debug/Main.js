@@ -160,9 +160,6 @@ var Main = (function (_super) {
      * Create scene interface
      */
     Main.prototype.startCreateScene = function () {
-        //添加皮肤
-        var testLayer = new MyTestLayer(); /**实例化皮肤对象 */
-        this.addChild(testLayer); /**将test显示对象添加到舞台 */
         // let iconL = this.createBitmapByName("egret_icon_png");
         // iconL.x = 200;
         // iconL.y = 300;
@@ -171,10 +168,6 @@ var Main = (function (_super) {
         // iconR.x = 400;
         // iconR.y = 300;
         // this.addChild(iconR);
-        // let stageW = this.stage.stageWidth;
-        // let stageH = this.stage.stageHeight;
-        // sky.width = stageW;
-        // sky.height = stageH;
         // this.times = -1;
         // var self = this;
         // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP,function(){
@@ -197,12 +190,12 @@ var Main = (function (_super) {
         // timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.timerComFunc,this);
         // //开始计时
         // timer.start();
-        // let sky = this.createBitmapByName("bg_jpg");
-        // this.addChild(sky);
-        // let stageW = this.stage.stageWidth;
-        // let stageH = this.stage.stageHeight;
-        // sky.width = stageW;
-        // sky.height = stageH;
+        var sky = this.createBitmapByName("bg_jpg");
+        this.addChild(sky);
+        var stageW = this.stage.stageWidth;
+        var stageH = this.stage.stageHeight;
+        sky.width = stageW;
+        sky.height = stageH;
         // let topMask = new egret.Shape();
         // topMask.graphics.beginFill(0x000000, 0.5);
         // topMask.graphics.drawRect(0, 0, stageW, 172);
@@ -243,10 +236,25 @@ var Main = (function (_super) {
         // //根据name关键字，异步获取一个json配置文件，name属性请参考resources/resource.json配置文件的内容。
         // // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         // RES.getResAsync("description_json", this.startAnimation, this);
-        // let button = new eui.Button();
+        var buttonList = [];
+        var nameList = new Array("TestLayer", "Label", "TestListView");
+        for (var i = 0; i < nameList.length; i++) {
+            var button = new eui.Button();
+            button.label = nameList[i];
+            button.width = 150;
+            button.horizontalCenter = 0;
+            // button.horizontalCenter = 0;
+            // button.verticalCenter = 0;
+            button.y = 0 + i * 70;
+            this.addChild(button);
+            button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+        }
+        // var button = new eui.Button();
         // button.label = "Click!";
         // button.horizontalCenter = 0;
         // button.verticalCenter = 0;
+        // button.x = 200;
+        // button.y = 200;
         // this.addChild(button);
         // button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
     };
@@ -325,11 +333,38 @@ var Main = (function (_super) {
      * Click the button
      */
     Main.prototype.onButtonClick = function (e) {
-        var panel = new eui.Panel();
-        panel.title = "Title";
-        panel.horizontalCenter = 0;
-        panel.verticalCenter = 0;
-        this.addChild(panel);
+        // let panel = new eui.Panel();
+        // panel.title = "Title";
+        // panel.horizontalCenter = 0;
+        // panel.verticalCenter = 0;
+        // this.addChild(panel);
+        if (e.target && e.target.label) {
+            switch (e.target.label) {
+                case "TestLayer":
+                    this.createTestLayer();
+                    break; //创建场景
+                case "TestLabel":
+                    this.createTestLabel();
+                    break; //创建listView
+                case "TestListView":
+                    this.createTestListView();
+                    break; //创建listView
+            }
+        }
+        console.log(e.target);
+    };
+    Main.prototype.createTestLayer = function () {
+        var pTestImg = new TestMyLayer(); /**测试图片对象 */
+        this.addChild(pTestImg); /**将test显示对象添加到舞台 */
+    };
+    Main.prototype.createTestLabel = function () {
+        // var pTestImg:TestImg = new TestImg();       /**测试图片对象 */  
+        // this.addChild(pTestImg);                    /**将test显示对象添加到舞台 */  
+    };
+    Main.prototype.createTestListView = function () {
+        //listview
+        var testListView = new TestListView(); /**实例化皮肤对象 */
+        this.addChild(testListView); /**将test显示对象添加到舞台 */
     };
     return Main;
 }(eui.UILayer));
