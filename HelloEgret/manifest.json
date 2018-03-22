@@ -10,15 +10,18 @@
 		"promise/bin/promise.js"
 	],
 	"game": [
+		"bin-debug/TestButtonSkin.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/Boy.js",
 		"bin-debug/DateEvent.js",
 		"bin-debug/Girl.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
-		"bin-debug/TestButtonSkin.js",
+		"bin-debug/Boy.js",
+		"bin-debug/TestEvent.js",
 		"bin-debug/TestListView.js",
 		"bin-debug/TestMyLayer.js",
+		"bin-debug/TestSocket.js",
+		"bin-debug/TestTime.js",
 		"bin-debug/ThemeAdapter.js"
 	]
 }

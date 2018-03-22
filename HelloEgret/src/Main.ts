@@ -34,7 +34,9 @@ class Main extends eui.UILayer {
      */
 
 
-    private times:number; //
+    private times:number; //时间函数
+    private nameList=new Array("TestLayer","Socket","TestListView","TestEvent","TestTime")
+    
 
     // private 
 
@@ -188,13 +190,12 @@ class Main extends eui.UILayer {
         // },this);
 
 
-        //调用soket
-        //this.createGameSence();
+
 
     
 
-    //时间函数
-     //创建一个计时器对象
+       //时间函数
+       //创建一个计时器对象
         // var timer:egret.Timer = new egret.Timer(500,5);
         // //注册事件侦听器
         // timer.addEventListener(egret.TimerEvent.TIMER,this.timerFunc,this);
@@ -260,11 +261,10 @@ class Main extends eui.UILayer {
 
 
         var buttonList:Array<any> = [];
-        var nameList=new Array("TestLayer","Label","TestListView")
-        for(var i= 0;i<nameList.length;i++)
+        for(var i= 0;i<this.nameList.length;i++)
         {
             var button = new eui.Button();
-            button.label = nameList[i];
+            button.label = this.nameList[i];
             button.width = 150
             button.horizontalCenter = 0;
             // button.horizontalCenter = 0;
@@ -275,60 +275,7 @@ class Main extends eui.UILayer {
         }
 
     }
-
-
-
-    //时间函数
-     private timerFunc()
-    {
-        console.log("计时");
-    }
-    private timerComFunc()
-    {
-        console.log("计时结束");
-    }
-
-    public constructor()
-    {
-        super();
-        //创建一个男朋友
-        var boy:Boy = new Boy();
-        boy.name = "男朋友";
-        //创建一个女朋友
-        var girl:Girl = new Girl();
-        girl.name = "女朋友";
-        //注册侦听器
-        boy.addEventListener(DateEvent.DATE,girl.getDate,girl);
-        //男朋友发送要求
-        boy.order();
-        //约会邀请完成后，移除侦听器
-        boy.removeEventListener(DateEvent.DATE,girl.getDate,girl);
-    }
-
-
-
-    //网络部分
-    private webSocket:egret.WebSocket;
-    private createGameSence():void{
-
-        console.log("creat soket...........");
-        this.webSocket = new egret.WebSocket();
-        this.webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA,this.onReceieveMessage,this);
-        this.webSocket.addEventListener(egret.Event.CONNECT,this.onSocketOpen,this);
-        this.webSocket.connect("echo.websocket.org",80);
-    }
-
-    private onReceieveMessage(e:egret.Event):void{
-        var msg = this.webSocket.readUTF();
-        console.log("receive data: " + msg);
-    }
-
-    private onSocketOpen():void{
-        var cmd = "hello soket";
-        console.log("connect successful :" + cmd);
-        this.webSocket.writeUTF(cmd);
-    }
-
+ 
 
     /* 
       回调函数
@@ -391,26 +338,18 @@ class Main extends eui.UILayer {
      * Click the button
      */
     private onButtonClick(e: egret.TouchEvent) {
-        // let panel = new eui.Panel();
-        // panel.title = "Title";
-        // panel.horizontalCenter = 0;
-        // panel.verticalCenter = 0;
-        // this.addChild(panel);
-
-
 
         if(e.target && e.target.label)
         {
             switch(e.target.label)
             {
-                case "TestLayer" : this.createTestLayer(); break;//创建场景
-                case "TestLabel" : this.createTestLabel(); break;//创建listView
-                case "TestListView" : this.createTestListView(); break;//创建listView
+                case this.nameList[0] : this.createTestLayer(); break;//创建场景
+                case this.nameList[1] : this.createSocketLayer(); break;//创建soket
+                case this.nameList[2] : this.createTestListView(); break;//创建listView
+                case this.nameList[3] : this.createTestEvent();break;//创建测试事件分发
+                case this.nameList[4] : this.createTestTime();break;//创建测试时间触发
             }
         }
-
-        console.log(e.target);
-        
 
 
     }
@@ -423,18 +362,30 @@ class Main extends eui.UILayer {
     }
 
 
-    public createTestLabel()
+    public createSocketLayer()
     {
-        // var pTestImg:TestImg = new TestImg();       /**测试图片对象 */  
-        // this.addChild(pTestImg);                    /**将test显示对象添加到舞台 */  
+        var pTestSocket:TestSocket = new TestSocket();       /**测试socket */  
+        this.addChild(pTestSocket);                    /**将socket 显示对象添加到舞台 */  
     }
 
     public createTestListView()
     {
         //listview
-        var testListView:TestListView = new TestListView();       /**实例化皮肤对象 */  
-        this.addChild(testListView);          /**将test显示对象添加到舞台 */  
+        var pTestListView:TestListView = new TestListView();       /**实例化皮肤对象 */  
+        this.addChild(pTestListView);          /**将test显示对象添加到舞台 */  
     }
 
+    public createTestEvent()
+    {
+        var pTestEvent:TestEvent = new TestEvent();
+        this.addChild(pTestEvent);
+    }
+
+    //调用时间测试函数
+    public createTestTime()
+    {
+        var pTestTime:TestTime = new TestTime();
+        this.addChild(pTestTime);
+    }
 
 }

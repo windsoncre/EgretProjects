@@ -17,8 +17,7 @@ var Girl = (function (_super) {
         return _super.call(this) || this;
     }
     Girl.prototype.getDate = function (evt) {
-        console.log("得到了" + evt.target.name + "的邀请！");
-        console.log("会在" + evt._year + "年" + evt._month + "月" + evt._date + "日，在" + evt._where + evt._todo);
+        console.log("得到了" + evt.target.name + "的邀请！" + "会在" + evt._year + "年" + evt._month + "月" + evt._date + "日，在" + evt._where + evt._todo);
     };
     return Girl;
 }(egret.Sprite));

@@ -16,13 +16,13 @@ var Boy = (function (_super) {
     function Boy() {
         return _super.call(this) || this;
     }
-    Boy.prototype.order = function () {
+    Boy.prototype.order = function (strInfo) {
         //生成约会事件对象
         var daterEvent = new DateEvent(DateEvent.DATE);
         //添加对应的约会信息
-        daterEvent._year = 2014;
-        daterEvent._month = 8;
-        daterEvent._date = 2;
+        daterEvent._year = 2018;
+        daterEvent._month = 3;
+        daterEvent._date = 22;
         daterEvent._where = "肯德基";
         daterEvent._todo = "共进晚餐";
         //发送要求事件

@@ -42,21 +42,14 @@ var __extends = (this && this.__extends) || (function () {
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
-        var _this = _super.call(this) || this;
+        /**
+         * 加载进度界面
+         * loading process interface
+         */
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.nameList = new Array("TestLayer", "Socket", "TestListView", "TestEvent", "TestTime");
         _this.isThemeLoadEnd = false;
         _this.isResourceLoadEnd = false;
-        //创建一个男朋友
-        var boy = new Boy();
-        boy.name = "男朋友";
-        //创建一个女朋友
-        var girl = new Girl();
-        girl.name = "女朋友";
-        //注册侦听器
-        boy.addEventListener(DateEvent.DATE, girl.getDate, girl);
-        //男朋友发送要求
-        boy.order();
-        //约会邀请完成后，移除侦听器
-        boy.removeEventListener(DateEvent.DATE, girl.getDate, girl);
         return _this;
     }
     Main.prototype.createChildren = function () {
@@ -180,8 +173,6 @@ var Main = (function (_super) {
         //     //发送消息
         //     this.webSocket.writeUTF("time" + self.times);
         // },this);
-        //调用soket
-        //this.createGameSence();
         //时间函数
         //创建一个计时器对象
         // var timer:egret.Timer = new egret.Timer(500,5);
@@ -237,10 +228,9 @@ var Main = (function (_super) {
         // // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         // RES.getResAsync("description_json", this.startAnimation, this);
         var buttonList = [];
-        var nameList = new Array("TestLayer", "Label", "TestListView");
-        for (var i = 0; i < nameList.length; i++) {
+        for (var i = 0; i < this.nameList.length; i++) {
             var button = new eui.Button();
-            button.label = nameList[i];
+            button.label = this.nameList[i];
             button.width = 150;
             button.horizontalCenter = 0;
             // button.horizontalCenter = 0;
@@ -249,37 +239,6 @@ var Main = (function (_super) {
             this.addChild(button);
             button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         }
-        // var button = new eui.Button();
-        // button.label = "Click!";
-        // button.horizontalCenter = 0;
-        // button.verticalCenter = 0;
-        // button.x = 200;
-        // button.y = 200;
-        // this.addChild(button);
-        // button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
-    };
-    //时间函数
-    Main.prototype.timerFunc = function () {
-        console.log("计时");
-    };
-    Main.prototype.timerComFunc = function () {
-        console.log("计时结束");
-    };
-    Main.prototype.createGameSence = function () {
-        console.log("creat soket...........");
-        this.webSocket = new egret.WebSocket();
-        this.webSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this.onReceieveMessage, this);
-        this.webSocket.addEventListener(egret.Event.CONNECT, this.onSocketOpen, this);
-        this.webSocket.connect("echo.websocket.org", 80);
-    };
-    Main.prototype.onReceieveMessage = function (e) {
-        var msg = this.webSocket.readUTF();
-        console.log("receive data: " + msg);
-    };
-    Main.prototype.onSocketOpen = function () {
-        var cmd = "hello soket";
-        console.log("connect successful :" + cmd);
-        this.webSocket.writeUTF(cmd);
     };
     /*
       回调函数
@@ -333,38 +292,47 @@ var Main = (function (_super) {
      * Click the button
      */
     Main.prototype.onButtonClick = function (e) {
-        // let panel = new eui.Panel();
-        // panel.title = "Title";
-        // panel.horizontalCenter = 0;
-        // panel.verticalCenter = 0;
-        // this.addChild(panel);
         if (e.target && e.target.label) {
             switch (e.target.label) {
-                case "TestLayer":
+                case this.nameList[0]:
                     this.createTestLayer();
                     break; //创建场景
-                case "TestLabel":
-                    this.createTestLabel();
-                    break; //创建listView
-                case "TestListView":
+                case this.nameList[1]:
+                    this.createSocketLayer();
+                    break; //创建soket
+                case this.nameList[2]:
                     this.createTestListView();
                     break; //创建listView
+                case this.nameList[3]:
+                    this.createTestEvent();
+                    break; //创建测试事件分发
+                case this.nameList[4]:
+                    this.createTestTime();
+                    break; //创建测试时间触发
             }
         }
-        console.log(e.target);
     };
     Main.prototype.createTestLayer = function () {
         var pTestImg = new TestMyLayer(); /**测试图片对象 */
         this.addChild(pTestImg); /**将test显示对象添加到舞台 */
     };
-    Main.prototype.createTestLabel = function () {
-        // var pTestImg:TestImg = new TestImg();       /**测试图片对象 */  
-        // this.addChild(pTestImg);                    /**将test显示对象添加到舞台 */  
+    Main.prototype.createSocketLayer = function () {
+        var pTestSocket = new TestSocket(); /**测试socket */
+        this.addChild(pTestSocket); /**将socket 显示对象添加到舞台 */
     };
     Main.prototype.createTestListView = function () {
         //listview
-        var testListView = new TestListView(); /**实例化皮肤对象 */
-        this.addChild(testListView); /**将test显示对象添加到舞台 */
+        var pTestListView = new TestListView(); /**实例化皮肤对象 */
+        this.addChild(pTestListView); /**将test显示对象添加到舞台 */
+    };
+    Main.prototype.createTestEvent = function () {
+        var pTestEvent = new TestEvent();
+        this.addChild(pTestEvent);
+    };
+    //调用时间测试函数
+    Main.prototype.createTestTime = function () {
+        var pTestTime = new TestTime();
+        this.addChild(pTestTime);
     };
     return Main;
 }(eui.UILayer));
