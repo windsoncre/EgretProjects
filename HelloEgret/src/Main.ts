@@ -152,59 +152,7 @@ class Main extends eui.UILayer {
      */
     protected startCreateScene(): void {
 
-
-
-
-
-        // let iconL = this.createBitmapByName("egret_icon_png");
-        // iconL.x = 200;
-        // iconL.y = 300;
-        // this.addChild(iconL);
-
-
-
-        // let iconR = this.createBitmapByName("egret_icon_png");
-        // iconR.x = 400;
-        // iconR.y = 300;
-        // this.addChild(iconR);
-
-
-
-
-        // this.times = -1;
-        // var self = this;
-        // this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP,function(){
-
-        //     switch(++self.times % 3){
-        //         case 0: egret.Tween.get( iconL ).to( { x:100 }, 300, egret.Ease.circIn );  break;
-        //         case 1:egret.Tween.get( iconL ).to( { x:200 }, 300, egret.Ease.circIn );break;
-        //         case 2:egret.Tween.get( iconL ).to( { x:300 }, 300, egret.Ease.circIn ); break;
-        //     }
-        //     console.log("time",self.times);
-
-
-        //     //发送消息
-        //     this.webSocket.writeUTF("time" + self.times);
-            
-
-        // },this);
-
-
-
-
-    
-
-       //时间函数
-       //创建一个计时器对象
-        // var timer:egret.Timer = new egret.Timer(500,5);
-        // //注册事件侦听器
-        // timer.addEventListener(egret.TimerEvent.TIMER,this.timerFunc,this);
-        // timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.timerComFunc,this);
-        // //开始计时
-        // timer.start();
-
-
-
+        //背景图
         let sky = this.createBitmapByName("bg_jpg");
         this.addChild(sky);
         let stageW = this.stage.stageWidth;
@@ -212,52 +160,21 @@ class Main extends eui.UILayer {
         sky.width = stageW;
         sky.height = stageH;
 
-        // let topMask = new egret.Shape();
-        // topMask.graphics.beginFill(0x000000, 0.5);
-        // topMask.graphics.drawRect(0, 0, stageW, 172);
-        // topMask.graphics.endFill();
-        // topMask.y = 33;
-        // this.addChild(topMask);
-
-        // let icon: egret.Bitmap = this.createBitmapByName("egret_icon_png");
-        // this.addChild(icon);
-        // icon.x = 26;
-        // icon.y = 33;
-
-        // let line = new egret.Shape();
-        // line.graphics.lineStyle(2, 0xffffff);
-        // line.graphics.moveTo(0, 0);
-        // line.graphics.lineTo(0, 117);
-        // line.graphics.endFill();
-        // line.x = 172;
-        // line.y = 61;
-        // this.addChild(line);
-
-
-        // let colorLabel = new egret.TextField();
-        // colorLabel.textColor = 0xffffff;
-        // colorLabel.width = stageW - 172;
-        // colorLabel.textAlign = "center";
-        // colorLabel.text = "Hello Egret";
-        // colorLabel.size = 24;
-        // colorLabel.x = 172;
-        // colorLabel.y = 80;
-        // this.addChild(colorLabel);
-
-        // let textfield = new egret.TextField();
-        // this.addChild(textfield);
-        // textfield.alpha = 0;
-        // textfield.width = stageW - 172;
-        // textfield.textAlign = egret.HorizontalAlign.CENTER;
-        // textfield.size = 24;
-        // textfield.textColor = 0xffffff;
-        // textfield.x = 172;
-        // textfield.y = 135;
-        // this.textfield = textfield;
-
         // //根据name关键字，异步获取一个json配置文件，name属性请参考resources/resource.json配置文件的内容。
         // // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         // RES.getResAsync("description_json", this.startAnimation, this);
+
+
+        /////////////////////////代码测试区////////////////////////////////////////////////////////
+        /////////////////////////代码测试区////////////////////////////////////////////////////////
+
+        // this.testSingletonPattern();//测试单例模式
+
+
+
+        /////////////////////////代码测试区////////////////////////////////////////////////////////
+
+
 
 
         var buttonList:Array<any> = [];
@@ -386,6 +303,24 @@ class Main extends eui.UILayer {
     {
         var pTestTime:TestTime = new TestTime();
         this.addChild(pTestTime);
+    }
+
+
+    //单例测试函数
+    public testSingletonPattern()
+    {
+        var instange1 = SingletonPattern.GetInstance();
+        var instange2 = SingletonPattern.GetInstance();
+
+        if(instange1 === instange2)
+        {
+            var a = 0;
+        }
+        else
+        {
+            var b = 0;
+        }
+
     }
 
 }

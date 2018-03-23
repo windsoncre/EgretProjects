@@ -42,12 +42,12 @@ var TestTime = (function (_super) {
         colorLabel.textColor = 0xffffff;
         colorLabel.width = 200;
         colorLabel.textAlign = "center";
-        colorLabel.text = "TestSocket";
+        colorLabel.text = "TestTime";
         colorLabel.size = 30;
         colorLabel.x = stageW / 2 - colorLabel.width / 2;
         colorLabel.y = 128;
         _this.addChild(colorLabel);
-        //socket部分/////
+        //相关内容部分/////
         //开始按钮
         var connetButton = new eui.Button();
         connetButton.label = "Star";

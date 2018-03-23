@@ -227,6 +227,14 @@ var Main = (function (_super) {
         // //根据name关键字，异步获取一个json配置文件，name属性请参考resources/resource.json配置文件的内容。
         // // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         // RES.getResAsync("description_json", this.startAnimation, this);
+        var instange1 = SingletonPattern.GetInstance();
+        var instange2 = SingletonPattern.GetInstance();
+        if (instange1 === instange2) {
+            var a = 0;
+        }
+        else {
+            var b = 0;
+        }
         var buttonList = [];
         for (var i = 0; i < this.nameList.length; i++) {
             var button = new eui.Button();

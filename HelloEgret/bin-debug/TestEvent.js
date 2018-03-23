@@ -97,12 +97,6 @@ var TestEvent = (function (_super) {
         //移除自己
         this.parent.removeChild(this);
     };
-    TestEvent.prototype.destoryView = function () {
-        console.log("onDestory");
-    };
-    TestEvent.prototype.close = function () {
-        console.log("close");
-    };
     //相关内容部分/////
     //连接回调
     TestEvent.prototype.onConnetClick = function () {
