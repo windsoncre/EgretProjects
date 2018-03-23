@@ -62,6 +62,8 @@ class TestEvent extends eui.Component{
         colorLabel.y = 128;
         this.addChild(colorLabel);
 
+        //测试
+
 
         //相关内容部分/////
 
